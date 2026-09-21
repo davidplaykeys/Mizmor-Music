@@ -557,7 +557,17 @@ function labelToYm(lbl){
   if(!m) return /^\d{4}-\d{2}$/.test(String(lbl||""))?String(lbl):"";
   var i=MONTHS.indexOf(m[1]); return i<0?"":(m[2]+"-"+pad(i+1,2));
 }
-function todayISO(){ var d=new Date(); return d.getFullYear()+"-"+pad(d.getMonth()+1,2)+"-"+pad(d.getDate(),2); }
+/* all dates follow California time, wherever the computer is */
+var TZ="America/Los_Angeles";
+function todayISO(){
+  try{
+    var parts=new Intl.DateTimeFormat("en-CA",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
+    var g=function(t){ return parts.filter(function(x){ return x.type===t; })[0].value; };
+    return g("year")+"-"+g("month")+"-"+g("day");
+  }catch(e){
+    var d=new Date(); return d.getFullYear()+"-"+pad(d.getMonth()+1,2)+"-"+pad(d.getDate(),2);
+  }
+}
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
 function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 var DEFAULT_RECV="David Asher Daniel";
