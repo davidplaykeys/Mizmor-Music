@@ -76,8 +76,6 @@ details.sec[open]>summary .chev{transform:rotate(90deg)}
 .stbox .l{font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;padding:2px 0}
 .stbox .l b{color:var(--text)}
 
-.item{display:grid;grid-template-columns:1fr 108px 30px;gap:8px;align-items:center;margin-bottom:8px}
-.item input{background:var(--field);color:var(--text);border:1px solid var(--fieldbd);border-radius:8px;padding:9px 10px;font-size:13.5px;width:100%}
 .iconbtn{border:1px solid var(--fieldbd);background:var(--field);color:var(--muted);border-radius:8px;width:30px;height:34px;
   display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
 .iconbtn:hover{color:var(--danger);border-color:var(--danger)}
@@ -223,8 +221,8 @@ table.tbl td,table.tbl th{border:1px solid #CFD6E4}
 .pay-tbl th.amt{text-align:center;width:33%}
 .pay-tbl td{padding:10px 14px;font-size:16px;color:#1b1f2a}
 .pay-tbl td.amt{text-align:center}
-.pay-tbl tr.item td{border-style:dotted;border-color:#C3CCDD;border-width:0 1px 1px 1px}
-.pay-tbl tr.item:first-child td{border-top:none}
+.pay-tbl tr.li td{border-style:dotted;border-color:#C3CCDD;border-width:0 1px 1px 1px}
+.pay-tbl tr.li:first-child td{border-top:none}
 .pay-tbl td.comp{color:#C08D2C;font-style:italic;font-weight:700}
 .pay-tbl tr.tot td{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:19px;color:#15265E;padding:12px 14px;border-top:1.5px solid #15265E}
 .pay-tbl tr.meta td.k{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:13.5px;letter-spacing:.8px;
@@ -679,7 +677,7 @@ function render(){
   var tb=$("rItems"); tb.innerHTML="";
   var rows=d.items.length?d.items:[{d:"\u2014",a:""}];
   rows.forEach(function(i){
-    var tr=document.createElement("tr"); tr.className="item";
+    var tr=document.createElement("tr"); tr.className="li";
     var a=document.createElement("td"); a.textContent=i.d||"";
     var b=document.createElement("td"); b.className="amt";
     var v=num(i.a);
