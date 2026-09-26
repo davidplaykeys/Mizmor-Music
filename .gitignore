@@ -1,7 +1,10 @@
 node_modules/
 .next/
 out/
-.env*.local
+# never commit keys: any .env file stays on your computer / in Netlify only
+.env
+.env.*
+!.env.example
 .DS_Store
 *.log
 .vercel

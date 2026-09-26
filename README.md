@@ -38,29 +38,17 @@ npm run build    # static site in ./out
 
 ## Deploying
 
-### Option A — GitHub Pages (workflow included)
+The site is hosted on **Netlify**, deployed automatically from `main`.
+Settings live in `netlify.toml` (build command `npm run build`, publish
+directory `out`, functions in `netlify/functions`).
 
-1. Push this repository to GitHub
-2. **Settings → Pages → Build and deployment → Source: GitHub Actions**
-3. Push to `main`; `.github/workflows/deploy.yml` builds and publishes
+The contact/booking form sends mail through the Netlify Function
+`netlify/functions/contact.js`, so the site must run on Netlify — a plain
+static host (e.g. GitHub Pages) would serve the pages but the form would
+not work. Required environment variables are listed in
+`SETUP-CONTACT-FORM.md`; they are set in Netlify, never in the code.
 
-If the repo is *not* at the root of the domain (i.e. it lives at
-`username.github.io/repo-name`), add the base path to `next.config.mjs`:
-
-```js
-basePath: '/repo-name',
-assetPrefix: '/repo-name/',
-```
-
-### Option B — Vercel
-
-Import the repo at vercel.com. No configuration needed. You may remove
-`output: 'export'` from `next.config.mjs` if you later want server features.
-
-### Custom domain (mizmormusic.com)
-
-Add a `public/CNAME` file containing `mizmormusic.com`, then set the domain
-under Settings → Pages.
+Custom domain (mizmormusic.com): Netlify → Domain management.
 
 ---
 

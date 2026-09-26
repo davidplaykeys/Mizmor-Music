@@ -19,3 +19,11 @@
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Staff receipt portal: keep it out of search engines (backs up the
+# <meta name="robots"> tag inside the page itself).
+[[headers]]
+  for = "/receipts-page-for-website/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
